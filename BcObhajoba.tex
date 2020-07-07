@@ -1,0 +1,330 @@
+%%%
+%%%  Template to prepare a defense of Bc./Mgr./... thesis
+%%%  to be presented at MFF
+%%%  (unofficial)
+%%%
+%%%  AUTHOR:  Arnošt Komárek
+%%%           Department of Probability and Mathematical Statistics
+%%%           Faculty of Mathematics and Physics, Charles University in Prague
+%%%
+%%%  LOG:    20150505  created by modification of some previous personal presentations
+%%%          20170522  update related to new MFF logo
+%%%  
+%%%  ===========================================================================
+\documentclass[c, 10pt]{beamer}
+
+
+%%%%% Package needed if some accented letters in the presentation
+%%%%% -------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+
+
+%%%%% Most beamer settings and other LaTeX commands
+%%%%% are provided in the file below
+%%%%% -----------------------------------------------------
+\input{MFF_Present.sty}
+
+
+%%%%% \ifCZversion is defined inside MFF_Present.sty
+%%%%% to distinguish between Czech and English presentations
+%%%%% ------------------------------------------------------
+\CZversiontrue       %% for presentations in Czech (Slovak)
+%\CZversionfalse      %% for presentations in English
+
+
+%%%%% Uncomment appropriate choice below if you wish to create
+%%%%% notes for audience having 2 or 4 slides on each (A4) page.
+%%%%% -------------------------------------------------------------
+\usepackage{pgfpages}
+%\pgfpagesuselayout{4 on 1}[a4paper, landscape, border shrink=5mm]
+%\pgfpagesuselayout{2 on 1}[a4paper, border shrink=5mm]
+
+\graphicspath{ {FigureLayout/} }  % path to images folder
+
+\usepackage{dcolumn}        % improved alignment of table columns
+\usepackage{booktabs}       % improved horizontal lines in tables
+
+
+%%%%% Basic settings of the document
+%%%%% (will be automatically used to create a title page, foots etc.)
+%%%%% --------------------------------------------------------------------
+
+  %%% Main title
+  %%% - short and long version
+  %%%   --> will appear on place where \inserttitle and \insertshorttitle commands used
+  %%%   --> if the full title is short enough, both short and long versions might be the same
+\title[Board game with artificial intelligence]{%                       
+       Board game with artificial intelligence}
+
+  %%% Subtitle (comment it if you do not want to have it)
+  %%%   --> will appear on place where \insertsubtitle and \insertshortsubtitle commands used
+\subtitle[]{Obhajoba bakalářské práce}
+
+  %%% Author
+  %%% - as "short" version, link to the author's webpage is used
+  %%%   (e.g., e-mail is also a useful alternative)
+  %%%   --> will appear on places where \insertauthor and \insertshortauthor commands used
+\author[daniel.crha(at)gmail.com]{%
+        Daniel Crha}
+
+  %%% Author's affiliation
+  %%% - can be fully commented for defense presentation
+  %%%   --> will appear on places where \insertinstitute and \insertshortinstitute commands used
+\institute[KTIML]{%
+           Katedra teoretické informatiky a~matematické logiky}
+
+  %%% Date of presentation
+  %%% - replace it by real date in case of a defense presentation
+  %%%   --> will appear on places where \insertdate and \insertshortdate commands used
+\date[7.7.2020]{%
+      7. července 2020}
+
+
+\begin{document}
+
+%%%%% Title slide
+%%%%% =====================================================================================
+\frame[plain]{\titlepage}
+
+
+%%%%% Fictitious introductory section
+%%%%% =====================================================================================
+\section{Úvod}
+%\framesection{}     %%% Uncomment it to get a special slide with the section title
+                     %%% - not really needed for a presentation lasting 10 minutes
+
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Úvod}
+\framesubtitle{Problematika}
+
+    \begin{itemize}\itemsep=1em
+    \item Klasické problémy teorie her jsou dobře prozkoumané
+        \begin{itemize}\color{colTwo}\itemsep=1ex
+            \item Mají i dobrou podporu
+        \end{itemize}
+    \item Tyto problémy ale často nemodelují reálný svět
+    \end{itemize}
+\end{frame}
+
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Úvod}
+    \framesubtitle{Složitější vlastnosti v teorii her}
+
+    \begin{itemize}\itemsep=1em
+    \item Chtěli bychom zkoumat vlastnosti, které reálný svět modelují
+    \item Konkrétně:
+        \begin{itemize}\color{colTwo}\itemsep=1ex
+            \item Neúplnost informace
+            \item Více hráčů
+            \item Prvky náhody
+            \item Netriviální větvící faktor
+        \end{itemize}
+    \item Jedná se o méně zkoumanou oblast
+    \end{itemize}
+\end{frame}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Cíle}
+\framesubtitle{}
+
+    \begin{itemize}\itemsep=1em
+        \item Navrhnout hru se zmíněnými vlastnostmi
+        \item Hru implementovat s~podporou pro umělou inteligenci
+        \item Implementovat a~porovnat několik inteligencí
+    \end{itemize}
+\end{frame}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Návrh hry}
+\framesubtitle{Pravidla a vlastnosti}
+    
+    \begin{itemize}\itemsep=1em
+        \item Hra se jmenuje \alert{Colonizers}
+        \item 4 hráči
+        \item Hra se hraje v kolech s~fázemi
+    \end{itemize}
+\end{frame}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Návrh hry}
+\framesubtitle{Pravidla a vlastnosti}
+    \begin{figure}[ht]
+        \centerline{\mbox{\includegraphics[width=110mm]{player}}}
+        \caption{Přehled hráče.}\label{ud:player}
+    \end{figure}
+\end{frame}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Implementace}
+\framesubtitle{Technologie}
+    \begin{itemize}\itemsep=1em
+        \item GUI - Electron + Angular
+        \item Logika - C\# (.NET Core)
+            \begin{itemize}\color{colTwo}\itemsep=1ex
+                \item ASP.NET Core jako backend pro GUI
+            \end{itemize}
+        \item Umělé inteligence - Python
+    \end{itemize}
+\end{frame}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Implementace}
+\framesubtitle{Rozhraní pro umělou inteligenci}
+    \begin{itemize}\itemsep=1ex
+        \item Inteligence implementuje bázovou třídu
+        \begin{itemize}\color{colTwo}\itemsep=1ex
+            \item Na ní implementuje callback
+        \end{itemize}
+        \item Bázová třída má další funkcionality
+        \begin{itemize}\color{colTwo}\itemsep=1ex
+            \item Determinizace
+            \item Simulace
+        \end{itemize}
+        \item Soubor s umělou inteligencí je spouštěn jako \alert{\_\_main\_\_}
+    \end{itemize}
+\end{frame}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Umělé inteligence}
+\framesubtitle{Implementované typy}
+    \begin{itemize}\itemsep=1ex
+        \item Náhodná inteligence
+        \item Heuristická inteligence
+        \item MaxN
+            \begin{itemize}\color{colTwo}\itemsep=1ex
+                \item Rozšíření Minimaxu na hry s více hráči
+                \item Determinizace + poziční vyhodnocování
+            \end{itemize}
+        \item ISMCTS
+            \begin{itemize}\color{colTwo}\itemsep=1ex
+                \item Monte Carlo metoda
+                \item Determinizace + simulace
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Experimenty}
+\framesubtitle{Vybalancování hry}
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{l@{\hspace{1.5cm}} c c c c}
+        \textbf{Pozice} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} \\
+        \midrule
+        Výhry            & 230 & 202   & 282   & 286 \\
+        Prohry          & 415 & 298   & 152   & 135 \\
+        Průměrný výsledek    & 2.8 & 2.67 & 2.302 & 2.228 \\
+        \bottomrule
+        \end{tabular}
+        \caption{Výsledky hraní heuristických inteligencí, 1000 her.}\label{tabex:heuristicwins}
+    \end{table}
+\end{frame}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Experimenty}
+\framesubtitle{Vybalancování hry}
+    $\chi^{2}$ test pro binomické rozdělení při analýze proher na první pozici:
+    $$\chi^{2} = \frac{(415 - 250)^{2}}{250} + \frac{(585 - 750)^{2}}{750} \approx 145.2$$
+    To koresponduje velmi malé $p$-hodnotě ($<< 0.05$).
+    Tedy zamítneme hypotézu, že~heuristická inteligence na~první pozici prohrává
+    s~pravděpodobností $0.25$.
+\end{frame}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Experimenty}
+\framesubtitle{Protovnání inteligencí}
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{l@{\hspace{1.5cm}} c c c c}
+        \textbf{AI} & \textbf{Random} & \textbf{Heuristic} & \textbf{MaxN} & \textbf{ISMCTS} \\
+        \midrule
+        Výhry            & 0   & 5     & 8     & 37 \\
+        Prohry          & 40  & 1     & 9     & 0 \\
+        Průměrný výsledek    & 3.8 & 2.38  & 2.54  & 1.28 \\
+        \bottomrule
+        \end{tabular}
+        \caption{Výsledky hraní všech čtyř inteligencí dohromady, 50 her.}\label{tabex:oneofeach}
+    \end{table}
+\end{frame}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Experimenty}
+\framesubtitle{Protovnání inteligencí}
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{l@{\hspace{1.5cm}} c c c c}
+        \textbf{AI} & \textbf{Heuristic} & \textbf{MaxN} \\
+        \midrule
+        Výhry            & 35   & 15   \\
+        Prohry          & 10   & 40   \\
+        Průměrný výsledek    & 2.13 & 2.87 \\
+        \bottomrule
+        \end{tabular}
+        \caption{Výsledky hraní dvou heuristických a dvou MaxN inteligencí, 50 her.}\label{tabex:heurmaxn}
+    \end{table}
+\end{frame}
+
+%%%%% Fictitious final section
+%%%%% ===================================================================================
+\section{Závěr}
+%\framesection{Závěr}     %%% Uncomment it to get a special slide with the section title
+                          %%% - not really needed for a presentation lasting 10 minutes
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}[plain]         %%% plain = no title etc.
+
+%%% Rámeček
+\begin{beamercolorbox}[center, sep=2pt, rounded=true, shadow=true]{mffboxcol}
+\LARGE\bfseries \alert{Děkuji za pozornost!}
+\end{beamercolorbox}
+
+\vspace{5em}
+\begin{beamercolorbox}[center, sep=2pt, rounded=true, shadow=true]{mffboxcol}
+Za ochotu a~čas mně věnovaný při přípravě této bakalářské práce děkuji též svému vedoucímu \alert{Mgr. Martinu Pilátovi, Ph.D.}
+\end{beamercolorbox}
+\end{frame}
+
+
+%%%%% Fictitious reactions to comments of the reviewer
+%%%%% ===================================================================================
+\section{Reakce na připomínky oponenta}
+%\framesection{}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Připomínky oponenta}
+\framesubtitle{Determinizace}
+    \begin{itemize}\itemsep=1ex
+        \item Engine hry sleduje množiny informací pro jednotlivé hráče
+        \item Konkrétně se determinizují:
+            \begin{itemize}\color{colTwo}\itemsep=1ex
+                \item Colonist pro ostatní hráče
+                \item Moduly v rukou ostatních hráčů
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+  %%%%% Slide
+  % ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Připomínky oponenta}
+\framesubtitle{Běhové časy strategií}
+    TODO - 
+    Tady bude tabulka s průměrným běhovým časem všech 4 inteligencí.
+\end{frame}
+
+\end{document}
