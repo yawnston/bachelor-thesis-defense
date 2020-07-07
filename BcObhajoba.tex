@@ -323,8 +323,16 @@ Za ochotu a~čas mně věnovaný při přípravě této bakalářské práce dě
   % ----------------------------------------------------------------------------------------
 \begin{frame}\frametitle{Připomínky oponenta}
 \framesubtitle{Běhové časy strategií}
-    TODO - 
-    Tady bude tabulka s průměrným běhovým časem všech 4 inteligencí.
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{l@{\hspace{1.5cm}} c c c c}
+        \textbf{AI} & \textbf{Random} & \textbf{Heuristic} & \textbf{MaxN} & \textbf{ISMCTS} \\
+        \midrule
+        Běhový čas            & 1ms & 1ms & 24s & 51s \\
+        \bottomrule
+        \end{tabular}
+        \caption{Průměrný běhový čas potřebný pro jedno rozhodnutí.\linebreak10 her, zaokrouhleno.}\label{tabex:oneofeach}
+    \end{table}
 \end{frame}
 
 \end{document}
